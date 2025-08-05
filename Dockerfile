@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y libgomp1 && rm -rf /var/lib/apt/lists/*
 # Copy application files
 COPY app.py .
 COPY config ./config
-COPY logs ./logs
 COPY mlruns ./mlruns
 
 # Expose port
