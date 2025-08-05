@@ -72,49 +72,6 @@ jobs:
         mkdir -p models
         mkdir -p logs
         mkdir -p mlruns
-
-    - name: Debug data files and structure
-      run: |
-        echo "=== Checking data directory structure ==="
-        find . -name "*.csv" -type f | head -20
-        
-        echo "=== Checking assessment/data directory ==="
-        ls -la assessment/data/data || echo "assessment/data directory not found"
-        
-        echo "=== Checking LFS file status ==="
-        git lfs ls-files
-        
-        echo "=== Checking actual file sizes ==="
-        find assessment/data/data -name "*.csv" -exec ls -lh {} \;
-        
-        echo "=== Checking first few CSV files for columns ==="
-        python -c "
-        import pandas as pd
-        import glob
-        import os
-        
-        data_patterns = ['assessment/data/data/*.csv', 'data/*.csv', '*.csv']
-        
-        for pattern in data_patterns:
-            files = glob.glob(pattern)
-            if files:
-                print(f'Found files matching {pattern}:')
-                for file in files[:3]:  # Check first 3 files
-                    try:
-                        # Check if file is actually a Git LFS pointer
-                        with open(file, 'r') as f:
-                            first_line = f.readline().strip()
-                            if first_line.startswith('version https://git-lfs'):
-                                print(f'  {file}: Git LFS pointer file (not downloaded)')
-                                continue
-                        
-                        df = pd.read_csv(file, nrows=1)
-                        print(f'  {file}: columns = {list(df.columns)}')
-                    except Exception as e:
-                        print(f'  {file}: Error reading - {e}')
-                break
-        else:
-            print('No CSV files found in any expected location')
         
     - name: Verify LFS files are downloaded
       run: |
