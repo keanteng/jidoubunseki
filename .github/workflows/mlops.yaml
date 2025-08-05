@@ -115,7 +115,6 @@ jobs:
                 break
         else:
             print('No CSV files found in any expected location')
-        "
         
     - name: Verify LFS files are downloaded
       run: |
@@ -132,7 +131,6 @@ jobs:
             fi
           fi
         done
-        "
     
     # Data Processing Steps
     - name: Data merging and validation
