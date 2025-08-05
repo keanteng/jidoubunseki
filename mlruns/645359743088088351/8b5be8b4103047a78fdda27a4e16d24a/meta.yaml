@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Khor%20Kean%20Teng/Downloads/Git/ml-assessment/mlruns/645359743088088351/8b5be8b4103047a78fdda27a4e16d24a/artifacts
+end_time: 1754387475252
+entry_point_name: ''
+experiment_id: '645359743088088351'
+lifecycle_stage: active
+run_id: 8b5be8b4103047a78fdda27a4e16d24a
+run_name: optuna_optimization
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754386980236
+status: 3
+tags: []
+user_id: Khor Kean Teng

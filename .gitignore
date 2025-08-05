@@ -1,0 +1,11 @@
+app-local.py
+/src/model/final-local.py
+/assessment/dictionaries
+
+# all pdf files
+*.pdf
+*.ipynb_checkpoints
+
+/venv
+/data
+.env

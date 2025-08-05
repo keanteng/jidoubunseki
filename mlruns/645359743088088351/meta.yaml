@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/Khor%20Kean%20Teng/Downloads/Git/ml-assessment/mlruns/645359743088088351
+creation_time: 1754373457978
+experiment_id: '645359743088088351'
+last_update_time: 1754373457978
+lifecycle_stage: active
+name: lightgbm_hyperparameter_tuning

@@ -1,0 +1,10 @@
+artifact_location: file:C:\Users\Khor Kean Teng\Downloads\Git\ml-assessment\mlruns/810767090139349314/models/m-853f81af361e40489cc25168e456db93/artifacts
+creation_timestamp: 1754373898061
+experiment_id: '810767090139349314'
+last_updated_timestamp: 1754373907734
+model_id: m-853f81af361e40489cc25168e456db93
+model_type: null
+name: lightgbm_model
+source_run_id: fa91c4b6b7094d6fb64af39c1a09f56f
+status: 2
+status_message: null

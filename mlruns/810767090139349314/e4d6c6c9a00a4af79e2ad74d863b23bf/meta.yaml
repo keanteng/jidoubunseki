@@ -1,0 +1,14 @@
+artifact_uri: file:C:\Users\Khor Kean Teng\Downloads\Git\ml-assessment\mlruns/810767090139349314/e4d6c6c9a00a4af79e2ad74d863b23bf/artifacts
+end_time: 1754387526486
+entry_point_name: ''
+experiment_id: '810767090139349314'
+lifecycle_stage: active
+run_id: e4d6c6c9a00a4af79e2ad74d863b23bf
+run_name: final_model_training
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754387493498
+status: 3
+tags: []
+user_id: Khor Kean Teng

@@ -1,0 +1,20 @@
+services:
+  loan-risk-api:
+    image: loan-risk-api:latest
+    build: .
+    container_name: loan-risk-api
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - MLFLOW_TRACKING_URI=file:///app/mlruns
+      - DATABRICKS_HOST=${DATABRICKS_HOST}
+      - DATABRICKS_TOKEN=${DATABRICKS_TOKEN}
+      - MLFLOW_TRACKING_URI=databricks
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

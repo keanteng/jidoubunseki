@@ -1,0 +1,25 @@
+data:
+  file_paths:
+    loan_data: "assessment/data/data/loan.csv"
+    payment_data: "assessment/data/data/payment.csv"
+    clarity_underwriting_variables: "assessment/data/data/clarity_underwriting_variables.csv"
+    merged_data: "data/auto_merged_data.csv"
+    preprocessed_data: "data/auto_preprocessed_data.csv"
+    train_data: "data/auto_train_data.csv"
+    valid_data: "data/auto_valid_data.csv"
+    test_data: "data/auto_test_data.csv"
+  model_paths:
+    final_model: "models/auto_final_model.pkl"
+    best_params: "models/auto_best_params.pkl"
+
+model_params:
+  n_trials: 1
+
+mlflow:
+  tracking_uri: "databricks"
+  registry_uri: "databricks-uc"
+  experiment_name: "/Shared/loan_risk_prediction"
+  model_name: "loan_risk_lightgbm"
+  use_unity_catalog: true
+  catalog: "workspace"  # Use existing catalog
+  schema: "default"     # Use default schema
