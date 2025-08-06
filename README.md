@@ -8,6 +8,12 @@ The architectural details can be found by reading the documents in the `docs` fo
 
 *Tech Used: Python, Docker, GitHub Actions, MLflow, Databricks and Optuna.*
 
+> Due to the data not submitted to the assessment, some folders can be missing and causing the pipeline to fail. We can run this script to create folders that will be used in the pipeline:
+
+```bash
+bash bin/set-dir.sh
+```
+
 ## Repository Structure
 
 To structure can be created on `bash` by typing: `cmd //c tree //a`
