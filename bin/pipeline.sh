@@ -6,7 +6,7 @@ mkdir -p data/raw data/processed models config
 
 # Run ingestion 
 echo "📥 Step 0: Data Ingestion..."
-python src/ingestion/ingest.py
+python src/ingestion/ingestion.py
 
 # Run pipeline steps
 echo "📊 Step 1: Data Merging..."

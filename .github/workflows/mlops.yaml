@@ -76,7 +76,7 @@ jobs:
     # Data Ingestion Steps
     - name: Data ingestion
       run: |
-        python src/data/ingest.py
+        python src/data/ingestion.py
     
     # Data Processing Steps
     - name: Data merging and validation
