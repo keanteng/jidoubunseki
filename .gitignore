@@ -1,6 +1,7 @@
 app-local.py
 /src/model/final-local.py
 /assessment/dictionaries
+/assessment/data/data
 
 # all pdf files
 .pdf

@@ -10,6 +10,11 @@ The diagram below presents the proposed architecture for an automated machine le
 
 ![alt text](image-1.png)
 
+**Source Code**
+
+- GitHub: https://github.com/keanteng/jidoubunseki
+- Docker Hub: https://hub.docker.com/r/keantengblog/loan-risk-api
+
 ## Architecture Overview
 
 The architecture make use of Python, GitHub Actions, Github repository, DataBricks as well as Docker to automate the machine learning workflow.

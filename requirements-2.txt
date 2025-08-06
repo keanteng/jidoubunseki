@@ -18,3 +18,4 @@ mlflow[databricks]
 databricks-cli 
 mlflow[extras]
 databricks-sdk
+huggingface-hub

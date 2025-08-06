@@ -4,6 +4,10 @@ echo "🚀Starting ML Pipeline..."
 # Create directories if they don't exist
 mkdir -p data/raw data/processed models config
 
+# Run ingestion 
+echo "📥 Step 0: Data Ingestion..."
+python src/ingestion/ingest.py
+
 # Run pipeline steps
 echo "📊 Step 1: Data Merging..."
 python src/data/merge.py --config config/config.yaml

@@ -73,21 +73,10 @@ jobs:
         mkdir -p logs
         mkdir -p mlruns
         
-    - name: Verify LFS files are downloaded
+    # Data Ingestion Steps
+    - name: Data ingestion
       run: |
-        echo "=== Verifying LFS files are properly downloaded ==="
-        for file in assessment/data/data/*.csv; do
-          if [ -f "$file" ]; then
-            echo "Checking $file:"
-            head -n 1 "$file"
-            if head -n 1 "$file" | grep -q "version https://git-lfs"; then
-              echo "❌ $file is still a Git LFS pointer!"
-              exit 1
-            else
-              echo "✅ $file appears to be downloaded correctly"
-            fi
-          fi
-        done
+        python src/data/ingest.py
     
     # Data Processing Steps
     - name: Data merging and validation
