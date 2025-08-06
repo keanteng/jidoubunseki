@@ -224,11 +224,11 @@ jobs:
         body: |
           ## ML Model Release
           
-          **Docker Image:** `${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest`
+          **Docker Image:** `${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest`
           
           **Docker Pull Command:**
           ```bash
-          docker pull ${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           ```
           
           **Commit:** ${{ github.sha }}
