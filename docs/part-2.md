@@ -6,7 +6,7 @@ date: 2025-08-05
 
 # Part 2 - Automated ML System
 
-The diagram below presents the proposed architecture for an automated machine learning system utilizing Python, GitHub, GitHub Actions, DataBricks, and Docker.
+The diagram below presents the proposed architecture for an automated machine learning system utilizing Python, GitHub, GitHub Actions, DataBricks, Hugging Face and Docker.
 
 ![alt text](image-1.png)
 
@@ -17,11 +17,11 @@ The diagram below presents the proposed architecture for an automated machine le
 
 ## Architecture Overview
 
-The architecture make use of Python, GitHub Actions, Github repository, DataBricks as well as Docker to automate the machine learning workflow.
+The architecture make use of Python, Hugging Face, GitHub Actions, Github repository, DataBricks as well as Docker to automate the machine learning workflow.
 
 The workflow can be either triggered periodically, manually (through GitHub Action or pushing changes to the repository such as changing the data). Currently the pipeline will be triggered once every 2 day at 2AM UTC or manually triggering the workflow through GitHub Actions.
 
-Once the workflow is triggered it will first perform data validation using Great Expectation to ensure the integrity of the data. Three files are expected to be present, the `loan`, `payment` and the `clarity_underwriting_variable`. Then the dataset will be joined according to the identifiers.
+Once the workflow is triggered it will first extract the data stored in Hugging Face, and then it will perform data validation using Great Expectation to ensure the integrity of the data. Three files are expected to be present, the `loan`, `payment` and the `clarity_underwriting_variable`. Then the dataset will be joined according to the identifiers.
 
 For the current implementation, Great Expectation only check for the presence of the identifier columns. Further check can be added for a more robust validation.
 
@@ -43,7 +43,7 @@ Then the Docker image will be pushed to the Docker Hub repository where we can d
 
 ## Limitations
 
-The data ingestion process in the current setup is not automated with huge csv file storing in GitHub repository. Further investigation such as Python script to pull data from cloud storage such as Google Cloud Storage or AWS S3 can be implemented to automate the data ingestion process.
+The data ingestion process in the current setup is storing the data in Hugging Face, which is not ideal for a more robust pipeline, storage such as AWS S3 or Google Cloud Storage can be considered for more security and scalability.
 
 The current implementation of the data validation using Great Expectation is only checking for the presence of identifier columns. More robust validation can be added to ensure data quality, such as checking for null values, data types, and value ranges.
 
