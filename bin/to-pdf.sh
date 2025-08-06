@@ -7,7 +7,7 @@ cd "docs"
 read -p "Enter part number (e.g., 1, 2, 3, etc.): " number
 
 # Generate PDF with LaTeX for A4 paper size
-pandoc "part-${number}" -o "part-${number}.pdf" \
+pandoc "part-${number}.md" -o "part-${number}.pdf" \
   --pdf-engine=pdflatex \
   -V geometry:a4paper \
   -V geometry:margin=0.5in \

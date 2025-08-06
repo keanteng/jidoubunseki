@@ -3,7 +3,8 @@ app-local.py
 /assessment/dictionaries
 
 # all pdf files
-*.pdf
+.pdf
+/assessment/*.pdf
 *.ipynb_checkpoints
 
 /venv

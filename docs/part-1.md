@@ -10,6 +10,8 @@ The loan risk prediction model workflow is presented as follows, executed in a s
 
 ![alt text](image.png)
 
+The following section provide a brief overview of each step in the workflow, details explanation can also be found in the Jupyter notebook.
+
 ## EDA
 
 Before the EDA process is conducted, the three dataset `loan`, `payment` and `clarity_underwriting_variable` are joined together into a single dataset. Then, a target varaible is constructed based on the `loan_status` column with the following logic where bad/risky loan is defined as `1` and good loan is defined as `0`:
@@ -53,7 +55,7 @@ With this strategy we avoid leaking future information into the model. The data 
 
 ## Hyperparameter Tuning
 
-Before training the model, we will conduct hyperparameter tuning to seek for the best hyperparameter. This is done through Stratified K-Fold Cross Validation with 5 folds. The training is done through `optuna` and `mlfow` for version control and tracking. 
+Before training the model, we will conduct hyperparameter tuning to seek for the best hyperparameter. This is done through Stratified K-Fold Cross Validation with 5 folds (maintaining the class balance in each fold). The training is done through `optuna` and `mlfow` for version control and tracking. 
 
 The strategy adopted is to maximize the AUC for a better discrimination power of the model.
 
@@ -83,7 +85,7 @@ AUC-ROC         0.750        0.750        Tie
 
 However, due to the costliness of missing a risky loan in a lower Recall, strategy A should be prioritized. Consider, the following scenario, let the average loan amount be $5000 with 80% loss rate on default. The review cost of a loan is $50 and the review is conducted on all the risky loans:
 
-```txt
+```
 === BUSINESS IMPACT ANALYSIS ===
 Assumptions:
 - Average loan amount: $5,000
@@ -91,24 +93,16 @@ Assumptions:
 - Test set size: 100,760 loans
 - Actual risky loans: 37,089
 - Actual good loans: 63,671
-
---- Strategy A (F1 Max) ---
-  Risky loans caught: 29694 / 37089 (80.1%)
-  Good loans flagged incorrectly: 33895
-  Prevented losses: $118,776,000
-  Actual losses: $29,580,000
-  Review costs: $3,179,450
-  Net benefit: $86,016,550
-  ROI: 70.5%
-
---- Strategy B (70% Recall) ---
-  Risky loans caught: 27810 / 37089 (75.0%)
-  Good loans flagged incorrectly: 28565
-  Prevented losses: $111,240,000
-  Actual losses: $37,116,000
-  Review costs: $2,818,750
-  Net benefit: $71,305,250
-  ROI: 62.5%
 ```
 
-In conclusion, due to the costliness of missing a risky loan, we should aim for a higher recall in the model.
+| Metric | Strategy A (F1 Max) | Strategy B (70% Recall) |
+|--------|---------------------|-------------------------|
+| Risky loans caught | 29,694 / 37,089 (80.1%) | 27,810 / 37,089 (75.0%) |
+| Good loans flagged incorrectly | 33,895 | 28,565 |
+| Prevented losses | $118,776,000 | $111,240,000 |
+| Actual losses | $29,580,000 | $37,116,000 |
+| Review costs | $3,179,450 | $2,818,750 |
+| Net benefit | $86,016,550 | $71,305,250 |
+| ROI | 70.5% | 62.5% |
+
+In conclusion, due to the costliness of missing a risky loan, we should aim for a higher recall in the model as it brings more ROI to the business.

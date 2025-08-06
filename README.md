@@ -114,6 +114,7 @@ Verifying all the API services can be done by running the test scripts:
 
 ```bash
 # test for single prediction and batch prediction
+# the script will check port 5000, please change it if you are using a different port or if the service is live on a different host
 py -3.12 test/api-test.py
 ```
 
