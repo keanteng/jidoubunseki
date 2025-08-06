@@ -8,7 +8,7 @@ date: 2025-08-05
 
 The diagram below presents the proposed architecture for an automated machine learning system utilizing Python, GitHub, GitHub Actions, DataBricks, Hugging Face and Docker.
 
-![alt text](image-1.png)
+![Architecture Overview](image-1.png){width=80%}
 
 **Source Code**
 
@@ -48,3 +48,11 @@ The data ingestion process in the current setup is storing the data in Hugging F
 The current implementation of the data validation using Great Expectation is only checking for the presence of identifier columns. More robust validation can be added to ensure data quality, such as checking for null values, data types, and value ranges.
 
 More robust logging and monitoring can be added so that error can be captured and alerted. Currently, the logging is done using print statements and MLFlow, but a more robust logging system such as Prometheus can be implemented.
+
+## Extra Visualization
+
+![GitHub Actions](image-2.png){width=50%}
+![DataBricks Workspace](image-3.png){width=50%}
+
+![GitHub Release](image-4.png){width=50%}
+![Docker Hub](image-5.png){width=50%}
