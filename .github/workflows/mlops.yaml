@@ -191,6 +191,8 @@ jobs:
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
+          type=raw,value=v{{date 'YYYY.MM.DD'}}-{{sha}}
+          type=raw,value=build-{{run_number}}
     
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
