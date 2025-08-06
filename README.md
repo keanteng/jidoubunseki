@@ -1,6 +1,6 @@
-# MoneyLion Assessment
+# ML Assessment
 
-This repository contains the code and documentation for the MoneyLion assessment project. The goal of this project is to build an automated machine learning system to predict the risk of loan applications
+This repository contains the code and documentation for the ML assessment project. The goal of this project is to build an automated machine learning system to predict the risk of loan applications
 
 The project is coded on Python version 3.12.
 
