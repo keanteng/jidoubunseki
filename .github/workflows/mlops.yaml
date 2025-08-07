@@ -167,6 +167,8 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
+    # the pr image not produce
+    # the semver also not produce cuz we don't use tag in commit
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v5
@@ -174,7 +176,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
         tags: |
           type=ref,event=branch
-          type=ref,event=pr
+          type=ref,event=pr 
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
           type=semver,pattern={{version}}
