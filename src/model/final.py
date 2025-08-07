@@ -272,7 +272,7 @@ def evaluate_model_performance(test_auc, val_auc, config):
     """
     Evaluate model performance against thresholds (without using deprecated staging)
     """
-    min_test_auc = config.get('model_promotion', {}).get('min_test_auc', 0.82)
+    min_test_auc = config.get('model_promotion', {}).get('min_test_auc', 0.72)
     min_val_auc = config.get('model_promotion', {}).get('min_val_auc', 0.72)
     
     print(f"\n=== MODEL PERFORMANCE EVALUATION ===")

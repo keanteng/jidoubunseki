@@ -8,7 +8,7 @@ date: 2025-08-05
 
 The diagram below presents the proposed architecture for an automated machine learning system utilizing Python, GitHub, GitHub Actions, DataBricks, Hugging Face and Docker.
 
-![Architecture Overview](image-1.png){width=80%}
+![Architecture Overview](image-1.png){width=75% #fig:arch}
 
 **Source Code**
 
@@ -19,7 +19,7 @@ The diagram below presents the proposed architecture for an automated machine le
 
 The architecture make use of Python, Hugging Face, GitHub Actions, Github repository, DataBricks as well as Docker to automate the machine learning workflow.
 
-The workflow can be either triggered periodically, manually (through GitHub Action or pushing changes to the repository such as changing the data). Currently the pipeline will be triggered once every 2 day at 2AM UTC or manually triggering the workflow through GitHub Actions.
+The workflow can be either triggered periodically, manually (through GitHub Action or pushing changes to the repository such as changes to the `src`, `data` and `config` files). Currently the pipeline will be triggered once every 2 day at 2AM UTC or manually triggering the workflow through GitHub Actions.
 
 Once the workflow is triggered it will first extract the data stored in Hugging Face, and then it will perform data validation using Great Expectation to ensure the integrity of the data. Three files are expected to be present, the `loan`, `payment` and the `clarity_underwriting_variable`. Then the dataset will be joined according to the identifiers.
 
@@ -33,7 +33,8 @@ The modeling starts with hyperparameter tuning using Optuna, monitored by MLFlow
 
 Then, a promotion criteria will be performed to determine whether the model should be promoted to production. The promotion system will check the performance of the model against certain criteria like minimum recall and precision or other metrics such as 2% better than the previous model in terms of F1 score. In our case, we just make sure the precision and recall is above 0.72 as part of demonstration.
 
-Then the promoted model will be deployed using Flask, containerized on Docker so that it can be accessed through API for single or batch prediction. To make sure the model works after deployed, a test script will also be triggered to ensure the model can be accessed and the API is working as expected.
+Then the promoted model will be deployed using Flask, containerized on Docker so that it can be accessed through API for single or batch prediction. To make sure the model works after deployed, a test script will also be triggered to ensure the model can be accessed
+and the API is working as expected.
 
 Then the Docker image will be pushed to the Docker Hub repository where we can deploy the services by pulling the images. A release will also be created in GitHub repository about the Docker Image.
 
@@ -51,8 +52,8 @@ More robust logging and monitoring can be added so that error can be captured an
 
 ## Extra Visualization
 
-![GitHub Actions](image-2.png){width=50%}
-![DataBricks Workspace](image-3.png){width=50%}
+![GitHub Actions](image-2.png){width=50% #fig:gh-actions}
+![DataBricks Workspace](image-3.png){width=50% #fig:databricks}
 
-![GitHub Release](image-4.png){width=50%}
-![Docker Hub](image-5.png){width=50%}
+![GitHub Release](image-4.png){width=50% #fig:gh-release}
+![Docker Hub](image-5.png){width=50% #fig:docker-hub}
