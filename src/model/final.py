@@ -243,6 +243,11 @@ def register_and_promote_model(model_name, run_id, test_auc, val_auc, config):
             
             # Add model performance evaluation
             performance_status = evaluate_model_performance(test_auc, val_auc, config)
+            
+            # Add this section to use the promote_to_production function
+            if performance_status == "PRODUCTION_READY":
+                promote_to_production(client, full_model_name, model_version.version, test_auc)
+            
             client.set_model_version_tag(
                 name=full_model_name,
                 version=model_version.version,
@@ -261,13 +266,13 @@ def register_and_promote_model(model_name, run_id, test_auc, val_auc, config):
         print(f"❌ Error registering model in Unity Catalog: {e}")
         return None
     
-    return model_version
+    return model_version, performance_status
 
 def evaluate_model_performance(test_auc, val_auc, config):
     """
     Evaluate model performance against thresholds (without using deprecated staging)
     """
-    min_test_auc = config.get('model_promotion', {}).get('min_test_auc', 0.72)
+    min_test_auc = config.get('model_promotion', {}).get('min_test_auc', 0.82)
     min_val_auc = config.get('model_promotion', {}).get('min_val_auc', 0.72)
     
     print(f"\n=== MODEL PERFORMANCE EVALUATION ===")
@@ -308,7 +313,6 @@ def promote_to_production(client, model_name, version, test_auc):
         
         print(f"🚀 Model version {version} RECOMMENDED for production!")
         print(f"   Test AUC: {test_auc:.4f}")
-        print(f"   Note: Manual deployment required (staging API deprecated)")
         
     except Exception as e:
         print(f"Error adding promotion tags: {e}")
@@ -562,13 +566,20 @@ if __name__ == "__main__":
     
     # Register model and potentially promote to production
     model_name = config.get('mlflow', {}).get('model_name', 'loan_risk_lightgbm')
-    model_version = register_and_promote_model(model_name, run_id, test_auc, val_auc, config)
+    model_version, status = register_and_promote_model(model_name, run_id, test_auc, val_auc, config)
     
     if model_version:
         print(f"\n🎉 Model registration completed!")
         print(f"   Model Name: {model_name}")
         print(f"   Version: {model_version.version}")
         print(f"   Stage: {model_version.current_stage}")
+
+    if status != "PRODUCTION_READY":
+        print(f"\n⚠️ Model status: {status}")
+        print("Please review the model performance and consider retraining or improving the model.")
+        print("The workflow will stop here for non-production ready models.")
+        exit(1)
+        
 
 # how to run
 # py -3.12 src/model/final.py --config "config/config.yaml"
