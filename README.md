@@ -14,6 +14,10 @@ The architectural details can be found by reading the documents in the `docs` fo
 bash bin/set-dir.sh
 ```
 
+## Architecture
+
+![Architecture Overview](docs/image-1.png)
+
 ## Repository Structure
 
 To structure can be created on `bash` by typing: `cmd //c tree //a`
